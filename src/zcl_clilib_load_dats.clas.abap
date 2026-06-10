@@ -28,14 +28,14 @@ CLASS zcl_clilib_load_dats IMPLEMENTATION.
                       ( bi_categ = '1' tipo_acceso = '3' )
                       ( bi_categ = '2' tipo_acceso = '1' )
                       ( bi_categ = '3' tipo_acceso = '1' )
-                      ( bi_categ = '2' tipo_acceso = '2' ) ).
+                      ( bi_categ = '2' tipo_acceso = '2' )
+                      ).
 
      delete from ztb_acc_categ_jp.
      insert ztb_acc_categ_jp from table @lti_acc_categ.
      select count( * ) from ztb_acc_categ_jp into @data(li_tot_reg).
 
-     out->write( li_tot_reg ).
-     out->write( 'Exito con la tabla ztb_acc_categ_jp' ).
+     out->write( |'Exito con la tabla ztb_acc_categ_jp = ' { li_tot_reg  }| ).
 *--------------------------------------------------------------------
     lti_catego = value #(
                       ( bi_categ = '1' descripcion = 'categoria-1' )
@@ -47,21 +47,19 @@ CLASS zcl_clilib_load_dats IMPLEMENTATION.
      insert ztb_catego_jcpr from table @lti_catego.
      select count( * ) from ztb_catego_jcpr into @li_tot_reg.
 
-     out->write( li_tot_reg ).
-     out->write( 'Exito con la tabla ztb_catego_jcpr' ).
+     out->write( |'Exito con la tabla ztb_catego_jcpr = ' { li_tot_reg  }| ).
 *--------------------------------------------------------------------
     lti_clientes = value #(
-                      ( id_cliente = '11111' tipo_acceso = '1' nombre = 'Ernesto' apellidos = 'Riquelme' email = 'ernest2020@gmail.com' url = 'https://www.ernestoricky.com')
-                      ( id_cliente = '22222' tipo_acceso = '1' nombre = 'Luis' apellidos = 'Morales' email = 'luis2020@gmail.com' url = 'https://www.luismorales.com')
-                      ( id_cliente = '11111' tipo_acceso = '2' nombre = 'Hernan' apellidos = 'Coñoman' email = 'hernan2020@gmail.com' url = 'https://www.hernancoño.com')
+                      ( id_cliente = '11111' tipo_acceso = '1' nombre = 'Ernesto' apellidos = 'Riquelme' email = 'ernest2020@gmail.com' url = 'https://www.ernestoricky.com' )
+                      ( id_cliente = '22222' tipo_acceso = '1' nombre = 'Luis' apellidos = 'Morales' email = 'luis2020@gmail.com' url = 'https://www.luismorales.com' )
+                      ( id_cliente = '11111' tipo_acceso = '2' nombre = 'Hernan' apellidos = 'Coñoman' email = 'hernan2020@gmail.com' url = 'https://www.hernancoño.com' )
                        ).
 
      delete from ztb_clientes_jp.
      insert ztb_clientes_jp from table @lti_clientes.
      select count( * ) from ztb_clientes_jp into @li_tot_reg.
 
-     out->write( li_tot_reg ).
-     out->write( 'Exito con la tabla ztb_clientes_jp' ).
+     out->write( |'Exito con la tabla ztb_clientes_jp' = { li_tot_reg  }| ).
 
 *--------------------------------------------------------------------
     lti_clilib  = value #(
@@ -76,8 +74,7 @@ CLASS zcl_clilib_load_dats IMPLEMENTATION.
      insert ztb_clnts_lib_jp from table @lti_clilib.
      select count( * ) from ztb_clnts_lib_jp into @li_tot_reg.
 
-     out->write( li_tot_reg ).
-     out->write( 'Exito con la tabla ztb_clnts_lib_jp' ).
+     out->write( |'Exito con la tabla ztb_clnts_lib_jp = ' { li_tot_reg  }| ).
 *--------------------------------------------------------------------
     lti_libros  = value #(
       ( id_libro = '202634524' bi_categ = '1' titulo = 'titulo-1' autor = 'autor-1' editorial = 'EDI-1' idioma = 'S' paginas = 100 precio = 13000 moneda = 'CLP' formato = '1' url = 'htpps://www.libreriaangola.com' )
@@ -91,8 +88,7 @@ CLASS zcl_clilib_load_dats IMPLEMENTATION.
      insert ztb_libros_jcpr from table @lti_libros.
      select count( * ) from ztb_libros_jcpr into @li_tot_reg.
 
-     out->write( li_tot_reg ).
-     out->write( 'Exito con la tabla ztb_libros_jcpr' ).
+     out->write( |'Exito con la tabla ztb_libros_jcpr' { li_tot_reg  }| ).
 *--------------------------------------------------------------------
 
   ENDMETHOD.
