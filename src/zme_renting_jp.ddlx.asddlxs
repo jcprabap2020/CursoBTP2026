@@ -1,30 +1,47 @@
 @Metadata.layer: #CORE
 @UI.headerInfo: {
-    typeName: 'Coche',
-    typeNamePlural: 'Coches',
+    typeName: 'Auto',
+    typeNamePlural: 'Autos',
     typeImageUrl: '',
     imageUrl: 'imagen',
     title: {
         type: #STANDARD,
-        label: '',
+        label: 'YYYYYYYYYY',
         value: 'Marca',
         iconUrl: ''
-        }
-
+        },
+    description: {
+        type: #STANDARD,
+        label: 'XXXXXXXXXXXXXX',
+        iconUrl: '',
+        criticality: '',
+        criticalityRepresentation: #WITHOUT_ICON,
+        value: 'Modelo',
+        valueQualifier: '',
+        targetElement: '' }
 }
 @Search.searchable: true
 annotate entity zcds_renting_jp
     with 
 {
-  @UI.facet: [{ id: 'DetalleVehiculo', label: 'Detalle del Vehículo', type : #COLLECTION, position : 10 },
-              { id: 'vehiculo', parentId: 'DetalleVehiculo', label: 'Detalles', type:#FIELDGROUP_REFERENCE,
-                    targetQualifier: 'DetalleVehiculo', position: 10},
-              { id: 'cliente', label: 'Clientes', type :#LINEITEM_REFERENCE, targetElement: '_det', position:20  }
-              ]
-  @UI.fieldGroup: [{ qualifier: 'DetalleVehiculo', position: 10 }]
+//cuadro que lista algunas caracteristicas
+  @UI.facet: [{ id: 'DetAuto', label: 'Detalle Auto', type : #COLLECTION, position : 10 },
+              { id: 'vehiculo',label: 'Detalles',  parentId: 'DetAuto',  type: #FIELDGROUP_REFERENCE,
+                    targetQualifier: 'DetAuto', position: 10}]
+  @UI.fieldGroup: [{ qualifier: 'DetAuto', position: 10 }]
   matricula;
-//----------------------
-//----------------------
+  @UI.fieldGroup: [{ qualifier: 'DetAuto', position: 20 }]
+  Combustible;
+  @UI.fieldGroup: [{ qualifier: 'DetAuto', position: 30 }]
+  Consumo;
+  @UI.fieldGroup: [{ qualifier: 'DetAuto', position: 40 }]
+  FechaFabr;
+  @UI.fieldGroup: [{ qualifier: 'DetAuto', position: 50 }]
+  Puertas;
+// listado detalle cliente
+  @UI.facet: [{ id: 'cliente', label: 'Clientes', type :#LINEITEM_REFERENCE, targetElement: '_det', position:20  }]
+  
+//Pagina principal-----------------------------------------------------------------------------
   @UI.lineItem: [{ position: 10, importance: #HIGH, cssDefault.width: '100px' }]
   @UI.selectionField: [{ position: 10 }] 
   @Search: {
@@ -32,7 +49,7 @@ annotate entity zcds_renting_jp
       ranking: #MEDIUM,
       fuzzinessThreshold: 0.8
   }
- @Consumption.valueHelpDefinition: [{ entity: { name: 'zcds_brands_jp', element: 'Marca' } }]
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'zcds_brands_jp', element: 'marca'  } }]
   marca;
 //  -------------------
   @UI.lineItem: [{ position: 20, importance: #HIGH, cssDefault.width: '140px' }]
@@ -46,14 +63,14 @@ annotate entity zcds_renting_jp
   @UI.lineItem: [{ position: 30, importance: #HIGH, cssDefault.width: '100px' }]
   color;
 //---------------------------
-  @UI.lineItem: [{ position: 40, label: 'Motor', importance: #HIGH, cssDefault.width: '80px' }]
-  motorcito;
+  @UI.lineItem: [{ position: 40, importance: #HIGH, label: 'Motor', cssDefault.width: '80px' }]
+  motor;
 //---------------------------
   @UI.lineItem: [{ position: 50, importance: #HIGH, cssDefault.width: '80px' }]
   Potencia;
 //---------------------------
   @UI.lineItem: [{ position: 60, importance: #HIGH, cssDefault.width: '80px' }]
-   @UI.selectionField: [{ position: 20 }] 
+  @UI.selectionField: [{ position: 20 }] 
   Precio;
 //---------------------------
   @UI.lineItem: [{ position: 70, importance: #HIGH, cssDefault.width: '80px' }]
@@ -67,12 +84,4 @@ annotate entity zcds_renting_jp
 //---------------------------
 
 
-  @UI.fieldGroup: [{ qualifier: 'DetalleVehiculo', position: 20 }]
-  Combustible;
-  @UI.fieldGroup: [{ qualifier: 'DetalleVehiculo', position: 30 }]
-  Consumo;
-  @UI.fieldGroup: [{ qualifier: 'DetalleVehiculo', position: 40 }]
-  FechaFabr;
-  @UI.fieldGroup: [{ qualifier: 'DetalleVehiculo', position: 50 }]
-  Puertas;
 }

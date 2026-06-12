@@ -17,7 +17,7 @@ define view zcds_renting_jp
   key cars.Marca     as marca,
       cars.Modelo    as modelo,
       cars.Color     as color,
-      cars.Motor     as motorcito,
+      cars.Motor     as motor,
       cars.Potencia,
       cars.UndPotencia,
       cars.Combustible,

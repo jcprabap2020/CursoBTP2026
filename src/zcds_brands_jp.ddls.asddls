@@ -6,6 +6,6 @@
 define view ZCDS_BRANDS_jp
   as select from zrent_brands_jp
 {
-  key marca as Marca,
+  key marca as marca,
       url   as Url
 }
