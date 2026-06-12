@@ -1,0 +1,14 @@
+@Metadata.layer: #CORE
+annotate entity ZCDS_DET_CUSTOMER_JP
+    with 
+{
+  @UI.lineItem: [{ position: 10, importance: #HIGH  }]
+  nombre;
+  @UI.lineItem: [{ position: 20, importance: #HIGH  }]
+  apellidos;
+  @UI.lineItem: [{ position: 30, importance: #HIGH, label: 'Correo electronico' }]
+  email;
+  @UI.lineItem: [{ position: 40, importance: #HIGH  }]
+  tipo_contrato;
+    
+}

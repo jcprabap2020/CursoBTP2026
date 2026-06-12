@@ -1,0 +1,78 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+    typeName: 'Coche',
+    typeNamePlural: 'Coches',
+    typeImageUrl: '',
+    imageUrl: 'imagen',
+    title: {
+        type: #STANDARD,
+        label: '',
+        value: 'Marca',
+        iconUrl: ''
+        }
+
+}
+@Search.searchable: true
+annotate entity zcds_renting_jp
+    with 
+{
+  @UI.facet: [{ id: 'DetalleVehiculo', label: 'Detalle del Vehículo', type : #COLLECTION, position : 10 },
+              { id: 'vehiculo', parentId: 'DetalleVehiculo', label: 'Detalles', type:#FIELDGROUP_REFERENCE,
+                    targetQualifier: 'DetalleVehiculo', position: 10},
+              { id: 'cliente', label: 'Clientes', type :#LINEITEM_REFERENCE, targetElement: '_det', position:20  }
+              ]
+  @UI.fieldGroup: [{ qualifier: 'DetalleVehiculo', position: 10 }]
+  matricula;
+//----------------------
+//----------------------
+  @UI.lineItem: [{ position: 10, importance: #HIGH, cssDefault.width: '100px' }]
+  @UI.selectionField: [{ position: 10 }] 
+  @Search: {
+      defaultSearchElement: true,
+      ranking: #MEDIUM,
+      fuzzinessThreshold: 0.8
+  }
+ @Consumption.valueHelpDefinition: [{ entity: { name: 'zcds_brands_jp', element: 'Marca' } }]
+  marca;
+//  -------------------
+  @UI.lineItem: [{ position: 20, importance: #HIGH, cssDefault.width: '140px' }]
+  @Search: {
+      defaultSearchElement: true,
+      ranking: #MEDIUM,
+      fuzzinessThreshold: 0.8
+  }
+  modelo;
+//-------------------------
+  @UI.lineItem: [{ position: 30, importance: #HIGH, cssDefault.width: '100px' }]
+  color;
+//---------------------------
+  @UI.lineItem: [{ position: 40, label: 'Motor', importance: #HIGH, cssDefault.width: '80px' }]
+  motorcito;
+//---------------------------
+  @UI.lineItem: [{ position: 50, importance: #HIGH, cssDefault.width: '80px' }]
+  Potencia;
+//---------------------------
+  @UI.lineItem: [{ position: 60, importance: #HIGH, cssDefault.width: '80px' }]
+   @UI.selectionField: [{ position: 20 }] 
+  Precio;
+//---------------------------
+  @UI.lineItem: [{ position: 70, importance: #HIGH, cssDefault.width: '80px' }]
+  Moneda;
+//---------------------------
+  @UI.lineItem: [{ position: 80, importance: #HIGH, cssDefault.width: '80px' }]
+  Alquilado;
+//---------------------------
+  @UI.lineItem: [{ position: 90, importance: #HIGH, cssDefault.width: '150px' }]
+  termino;
+//---------------------------
+
+
+  @UI.fieldGroup: [{ qualifier: 'DetalleVehiculo', position: 20 }]
+  Combustible;
+  @UI.fieldGroup: [{ qualifier: 'DetalleVehiculo', position: 30 }]
+  Consumo;
+  @UI.fieldGroup: [{ qualifier: 'DetalleVehiculo', position: 40 }]
+  FechaFabr;
+  @UI.fieldGroup: [{ qualifier: 'DetalleVehiculo', position: 50 }]
+  Puertas;
+}
